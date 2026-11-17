@@ -1,0 +1,72 @@
+-- @title Haze Garden
+-- @by mapuzu
+-- @genre psychedelic hip hop
+-- @preset haze-garden.preset
+-- @cycles 75
+-- @license CC0-1.0 (code)
+--
+-- haze-garden.strudel.js in TidalCycles. That file is the song at its fullest, as a loop. This
+-- one is the whole song, 75 bars: each part comes in on its bar, and PAM's CMI instruments make
+-- every sound.
+
+{-
+Setup, in this order:
+  1. PAM: load haze-garden.preset, import haze-garden.midimap.json (Settings > Mappings > Import),
+     and give PAM a MIDI input port. The preset has cell N on MIDI channel N.
+  2. PAM plays its own tabla player and lands each variation on a bar line, so it follows Tidal's
+     clock: use a standalone PAM and switch External Clock Sync on. Set MIDI variation switching
+     to Bar Sync every 4 bars with a 2-bar morph (mode Param), and switch on Experimental Mode
+     with FX Rack Graph, CM-FX, CMI and Generative Patterns. The `do` block sends the clock from d1.
+  3. Run `mapuzu tidal` and leave the page it prints open: that page sends the MIDI.
+  4. Load mapaudio.tidal in BootTidal.hs: `mapuzu tidal` prints the lines, for Tidal 1.9 and 1.10.
+  5. Evaluate the `once $ pamsetup` line, then the `do` block.
+Note names sit an octave above Strudel's: Tidal's c5 is middle C, which Strudel calls c4.
+-}
+
+once $ pamsetup "channels=cell poly=5,6,7,8 roots=5:36 names=bd:1,sd:2,hh:3,tabla:4,bass:5,gtr:6,tape:7,koto:8"
+
+-- timeline (cycles): drums 0-23 | groove 23-40 | break 40-52 | drop 52-64 | outro 64-69 | the record stops 69-75
+do
+  let -- the pocket: straight until bar 18, then swung by a quarter, by a third through the break, and
+      -- by a quarter again. Strudel's swingBy(1/4, 8) is swingBy (1/8) 8 here: Tidal counts whole slices
+      pocket pat = stack [ playFor 0 18 pat
+                         , playFor 18 40 $ swingBy (1/8) 8 pat
+                         , playFor 40 52 $ swingBy (1/6) 8 pat
+                         , playFor 52 75 $ swingBy (1/8) 8 pat ]
+      -- drums: one kick a bar, then its pattern. From bar 14 the snare lies back 22 ms and three hats
+      -- in ten double. Kick and snare rest through the break, and the drums leave at bar 64
+      bd    = pocket $ pam "bd [~ ~ ~ bd] [~ bd] ~"
+      kick  = stack [playFor 0 2 $ pam "bd", playFor 2 40 bd, playFor 52 64 bd]
+      sd    = pam "~ sd ~ sd"
+      snare = stack [playFor 6 14 sd, playFor 14 40 $ 0.008 ~> sd, playFor 52 64 $ 0.008 ~> sd]
+      hh    = pam "hh*8"
+      hats  = pocket $ stack [playFor 10 14 hh, playFor 14 64 $ sometimesBy 0.3 (ply 2) hh] # gain (range 0.5 1 perlin)
+      -- jazz guitar: Dm9, Dm9, B flat major 7, Gm9, in the notes that Strudel's voicing() chose. Tidal has no voicing()
+      gtr   = struct "t ~ ~ [~ t]" $ note "<[a4,d5,e5,f5,c6]!2 [bf3,d5,f5,a5] [g4,bf4,d5,f5,a5]>" # pam "gtr"
+      -- soul bass on the chord roots, on the kick's rhythm
+      bass  = pocket $ struct "t [~ ~ ~ t] [~ t] [~ ~ ~ t]" $ note "<d3!2 bf2 g2>" # pam "bass"
+      -- koto in D hirajoshi: D E F A B flat, written out as semitones above Tidal's note 0, which is c5
+      -- From bar 60 the koto answers itself an eighth later, two steps up
+      line  = "0 ~ [4 3] ~ 2 ~ [~ 4] 0"
+      koto  = pocket $ note (toScale [2, 4, 5, 9, 10] $ off 0.125 (playFor 60 75 . (+ 2)) line) # pam "koto"
+      -- tape pad, two notes to a bar
+      tape  = note "<[a5,e6]!2 [f5,d6] [g5,d6]>" # pam "tape"
+  setcps (86/60/4)
+  resetCycles
+  d1 $ playFor 0 75 pamclock
+  -- PAM's variations: 1 as programmed, 2 the trip, 3 the bloom. PAM glides for two bars and lands on
+  -- a four-bar line, so each one is asked for two bars ahead of its landing at 8, 40, 52 and 64
+  d2 $ stack [playFor 6 7 $ variation 1, playFor 38 39 $ variation 2, playFor 50 51 $ variation 3, playFor 62 63 $ variation 2]
+  d3 $ stack [
+      kick, snare, hats,
+      playFor 23 69 gtr,
+      playFor 29 75 bass,
+      playFor 46 75 koto,
+      playFor 56 75 tape,
+      -- PAM's tabla player waits at density 0. From bar 34 noise rides it, four values to a bar
+      playFor 0 1 $ knob "playerDensity" 0 # cell "tabla",
+      playFor 34 75 $ segment 4 $ knob "playerDensity" (range 0.2 0.9 perlin) # cell "tabla",
+      -- the record turns from the top. At bar 69 the guitar stops and PAM's Vinyl Brake slows every cell to a halt
+      playFor 0 1 $ knob "vinylbrakeEngage" 0 # cell "[1,2,3,4,5,6,7,8]",
+      playFor 69 75 $ knob "vinylbrakeEngage" 1 # cell "[1,2,3,4,5,6,7,8]"
+    ]

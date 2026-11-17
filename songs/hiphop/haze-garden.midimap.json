@@ -1,0 +1,128 @@
+[
+ {
+  "id": "mapuzu-1207",
+  "paramId": "cell1_vinylbrakeEngage",
+  "source": "nrpn",
+  "channel": 0,
+  "number": 1207,
+  "mode": "absolute",
+  "range": {
+   "min": 0,
+   "max": 127
+  },
+  "invert": false,
+  "enabled": true
+ },
+ {
+  "id": "mapuzu-2231",
+  "paramId": "cell2_vinylbrakeEngage",
+  "source": "nrpn",
+  "channel": 0,
+  "number": 2231,
+  "mode": "absolute",
+  "range": {
+   "min": 0,
+   "max": 127
+  },
+  "invert": false,
+  "enabled": true
+ },
+ {
+  "id": "mapuzu-3255",
+  "paramId": "cell3_vinylbrakeEngage",
+  "source": "nrpn",
+  "channel": 0,
+  "number": 3255,
+  "mode": "absolute",
+  "range": {
+   "min": 0,
+   "max": 127
+  },
+  "invert": false,
+  "enabled": true
+ },
+ {
+  "id": "mapuzu-4263",
+  "paramId": "cell4_playerDensity",
+  "source": "nrpn",
+  "channel": 0,
+  "number": 4263,
+  "mode": "absolute",
+  "range": {
+   "min": 0,
+   "max": 127
+  },
+  "invert": false,
+  "enabled": true
+ },
+ {
+  "id": "mapuzu-4279",
+  "paramId": "cell4_vinylbrakeEngage",
+  "source": "nrpn",
+  "channel": 0,
+  "number": 4279,
+  "mode": "absolute",
+  "range": {
+   "min": 0,
+   "max": 127
+  },
+  "invert": false,
+  "enabled": true
+ },
+ {
+  "id": "mapuzu-5303",
+  "paramId": "cell5_vinylbrakeEngage",
+  "source": "nrpn",
+  "channel": 0,
+  "number": 5303,
+  "mode": "absolute",
+  "range": {
+   "min": 0,
+   "max": 127
+  },
+  "invert": false,
+  "enabled": true
+ },
+ {
+  "id": "mapuzu-6327",
+  "paramId": "cell6_vinylbrakeEngage",
+  "source": "nrpn",
+  "channel": 0,
+  "number": 6327,
+  "mode": "absolute",
+  "range": {
+   "min": 0,
+   "max": 127
+  },
+  "invert": false,
+  "enabled": true
+ },
+ {
+  "id": "mapuzu-7351",
+  "paramId": "cell7_vinylbrakeEngage",
+  "source": "nrpn",
+  "channel": 0,
+  "number": 7351,
+  "mode": "absolute",
+  "range": {
+   "min": 0,
+   "max": 127
+  },
+  "invert": false,
+  "enabled": true
+ },
+ {
+  "id": "mapuzu-8375",
+  "paramId": "cell8_vinylbrakeEngage",
+  "source": "nrpn",
+  "channel": 0,
+  "number": 8375,
+  "mode": "absolute",
+  "range": {
+   "min": 0,
+   "max": 127
+  },
+  "invert": false,
+  "enabled": true
+ }
+]

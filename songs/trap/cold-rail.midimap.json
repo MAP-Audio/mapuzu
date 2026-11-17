@@ -1,0 +1,58 @@
+[
+ {
+  "id": "mapuzu-5123",
+  "paramId": "cell5_synth_p4",
+  "source": "nrpn",
+  "channel": 0,
+  "number": 5123,
+  "mode": "absolute",
+  "range": {
+   "min": 0,
+   "max": 127
+  },
+  "invert": false,
+  "enabled": true
+ },
+ {
+  "id": "mapuzu-7241",
+  "paramId": "cell7_delayMix",
+  "source": "nrpn",
+  "channel": 0,
+  "number": 7241,
+  "mode": "absolute",
+  "range": {
+   "min": 0,
+   "max": 127
+  },
+  "invert": false,
+  "enabled": true
+ },
+ {
+  "id": "mapuzu-12306",
+  "paramId": "__action_cellToggleMute3",
+  "source": "nrpn",
+  "channel": 0,
+  "number": 12306,
+  "mode": "absolute",
+  "range": {
+   "min": 0,
+   "max": 127
+  },
+  "invert": false,
+  "enabled": true
+ },
+ {
+  "id": "mapuzu-12309",
+  "paramId": "__action_cellToggleMute6",
+  "source": "nrpn",
+  "channel": 0,
+  "number": 12309,
+  "mode": "absolute",
+  "range": {
+   "min": 0,
+   "max": 127
+  },
+  "invert": false,
+  "enabled": true
+ }
+]

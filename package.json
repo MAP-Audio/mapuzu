@@ -1,0 +1,78 @@
+{
+  "name": "@mapaudio/mapuzu",
+  "version": "0.1.0",
+  "description": "MAP Audio's instruments for uzulang live coding. PAM as a Strudel output and a TidalCycles OSC target: notes into cells, every MIDI-mappable parameter, variations, mutes and transport, plus offline rendering through mapcli.",
+  "main": "index.mjs",
+  "type": "module",
+  "exports": {
+    ".": "./index.mjs",
+    "./page": "./mapuzu.mjs",
+    "./browser": "./dist/mapuzu.mjs",
+    "./pam": "./src/pam/index.mjs",
+    "./node": "./src/node/index.mjs",
+    "./tidal": "./src/tidal/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "mapuzu": "bin/mapuzu.mjs"
+  },
+  "files": [
+    "index.mjs",
+    "mapuzu.mjs",
+    "dist/mapuzu.mjs",
+    "mapaudio.tidal",
+    "bin",
+    "src/node",
+    "src/pam",
+    "src/strudel",
+    "src/tidal",
+    "songs/README.md",
+    "songs/*/*.strudel.js",
+    "songs/*/*.tidal",
+    "songs/*/*.kit.json",
+    "songs/*/*.midimap.json",
+    "songs/*/*.preset"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "gen:params": "node scripts/gen-pam-params.mjs",
+    "build:browser": "node scripts/build-browser.mjs",
+    "prepack": "node scripts/build-browser.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MAP-Audio/mapuzu.git"
+  },
+  "homepage": "https://github.com/MAP-Audio/mapuzu#readme",
+  "bugs": {
+    "url": "https://discord.gg/nWh5XDNW6c"
+  },
+  "keywords": [
+    "tidalcycles",
+    "strudel",
+    "uzulang",
+    "pattern",
+    "livecoding",
+    "pam",
+    "mapcli",
+    "midi"
+  ],
+  "license": "AGPL-3.0-or-later",
+  "engines": {
+    "node": ">=22"
+  },
+  "peerDependencies": {
+    "@strudel/core": "^1.2.6",
+    "@strudel/mini": "^1.2.6",
+    "@strudel/tonal": "^1.2.6",
+    "@strudel/transpiler": "^1.2.6"
+  },
+  "devDependencies": {
+    "@strudel/core": "^1.2.6",
+    "@strudel/mini": "^1.2.6",
+    "@strudel/tonal": "^1.2.6",
+    "@strudel/transpiler": "^1.2.6",
+    "esbuild": "^0.28.2",
+    "vitest": "^3.0.4"
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "name": "Cold Rail",
+  "tempo": 140,
+  "meta": {
+    "author": "mapuzu",
+    "description": "Trap kit for cold-rail.strudel.js. PAM plays the hats, open hat and rim from its own patterns, a different set in each of four variations; Strudel plays the kick, clap, 808 and the two CMI instruments. Drum synths on cells 1-6, CMI instruments on 7 and 8: it needs no samples."
+  },
+  "programs": {
+    "cmi": { "7": "fm_bell", "8": "glass_pad" }
+  },
+  "channels": "cell",
+  "pitched": [5, 7, 8],
+  "state": {
+    "masterLimiterEnabled": 1,
+    "masterLimiterMode": 1,
+
+    "cell1_synthEngine": "Kick",
+    "cell1_synth_p1": 0.3,
+    "cell1_synth_p4": 0.4,
+    "cell1_synth_p6": 0.4,
+    "cell1_volume": 2,
+
+    "cell2_synthEngine": "Clap",
+    "cell2_synth_p1": 0.42,
+    "cell2_synth_p2": 0.55,
+    "cell2_synth_p3": 0.4,
+    "cell2_synth_p4": 0.4,
+    "cell2_synth_p5": 0.3,
+    "cell2_volume": -2,
+    "cell2_fdnEnabled": 1,
+    "cell2_fdnMix": 22,
+    "cell2_fdnSize": 45,
+    "cell2_fdnFeedback": 40,
+
+    "cell3_synthEngine": "HiHat",
+    "cell3_synth_p2": 0.45,
+    "cell3_synth_p3": 0.62,
+    "cell3_synth_p4": 0.7,
+    "cell3_volume": -12.5,
+    "cell3_pan": 0.1,
+
+    "cell4_synthEngine": "HiHat",
+    "cell4_synth_p2": 0.88,
+    "cell4_synth_p3": 0.58,
+    "cell4_synth_p4": 0.7,
+    "cell4_volume": -16.5,
+    "cell4_pan": -0.25,
+
+    "cell5_synthEngine": "808",
+    "cell5_synth_p2": 0.2,
+    "cell5_synth_p4": 0.5,
+    "cell5_synth_p5": 0.35,
+    "cell5_synthHold": 1,
+    "cell5_volume": -8,
+
+    "cell6_synthEngine": "Rim",
+    "cell6_synth_p1": 0.6,
+    "cell6_synthVolume": 6,
+    "cell6_volume": 0,
+    "cell6_pan": 0.4,
+    "cell6_delayEnabled": 1,
+    "cell6_delaySyncEnabled": 1,
+    "cell6_delayDelayTime": 0.4706,
+    "cell6_delayFeedback": 35,
+    "cell6_delayMix": 22,
+    "cell6_delayPingPong": 1,
+
+    "cell7_cmi_p1": 0.5,
+    "cell7_cmi_p2": 0.28,
+    "cell7_cmi_p3": 0.55,
+    "cell7_cmiVolume": 3,
+    "cell7_volume": -2,
+    "cell7_delayEnabled": 1,
+    "cell7_delaySyncEnabled": 1,
+    "cell7_delayDelayTime": 0.4706,
+    "cell7_delayFeedback": 50,
+    "cell7_delayMix": 28,
+    "cell7_delayPingPong": 1,
+    "cell7_fdnEnabled": 1,
+    "cell7_fdnMix": 30,
+    "cell7_fdnSize": 70,
+    "cell7_fdnFeedback": 60,
+
+    "cell8_cmi_p1": 0.3,
+    "cell8_cmi_p4": 0.55,
+    "cell8_cmi_p5": 0.65,
+    "cell8_cmiVolume": 4,
+    "cell8_volume": -6,
+    "cell8_fdnEnabled": 1,
+    "cell8_fdnMix": 40,
+    "cell8_fdnSize": 80,
+    "cell8_fdnFeedback": 65
+  },
+  "patterns": {
+    "3": { "code": "s(\"3\").struct(\"x*8\").velocity(\"[.85 .5 .7 .5]*2\")", "bars": 1 },
+    "4": "",
+    "6": { "mini": "~ ~ ~ x ~ ~ [~ x] ~", "bars": 2 }
+  },
+  "variations": {
+    "2": {
+      "patterns": {
+        "3": { "code": "s(\"3\").struct(\"<[x x x x x x [x x x] x] [x x [x x] x x x x*4 x]>\").velocity(\"[.85 .5 .7 .5]*2\")", "bars": 2 },
+        "4": { "mini": "<[~ ~ ~ ~ ~ ~ ~ x] ~>", "bars": 2 },
+        "6": { "mini": "~ ~ ~ x ~ [~ x] ~ ~", "bars": 1 }
+      }
+    },
+    "3": {
+      "patterns": {
+        "3": { "code": "s(\"3\").struct(\"<[x*2 x*2 x*2 x*3 x*2 x*2 x*4 x*2] [x*2 x*2 x*6 x*2 x*2 x*3 x*2 x*8]>\").velocity(\"[.85 .45 .65 .45]*4\")", "bars": 2 },
+        "4": { "mini": "~ ~ ~ x ~ ~ ~ x", "bars": 1 },
+        "6": { "mini": "~ x ~ [~ x] ~ ~ x ~", "bars": 1 }
+      }
+    },
+    "4": {
+      "patterns": {
+        "3": "",
+        "4": "",
+        "6": { "mini": "~ ~ ~ ~ ~ ~ x ~", "bars": 2 }
+      }
+    }
+  }
+}

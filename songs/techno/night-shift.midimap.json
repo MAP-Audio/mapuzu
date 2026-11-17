@@ -1,0 +1,86 @@
+[
+ {
+  "id": "mapuzu-3073",
+  "paramId": "cell3_synth_p2",
+  "source": "nrpn",
+  "channel": 0,
+  "number": 3073,
+  "mode": "absolute",
+  "range": {
+   "min": 0,
+   "max": 127
+  },
+  "invert": false,
+  "enabled": true
+ },
+ {
+  "id": "mapuzu-5193",
+  "paramId": "cell5_delayMix",
+  "source": "nrpn",
+  "channel": 0,
+  "number": 5193,
+  "mode": "absolute",
+  "range": {
+   "min": 0,
+   "max": 127
+  },
+  "invert": false,
+  "enabled": true
+ },
+ {
+  "id": "mapuzu-5586",
+  "paramId": "cell5_cmi_p1",
+  "source": "nrpn",
+  "channel": 0,
+  "number": 5586,
+  "mode": "absolute",
+  "range": {
+   "min": 0,
+   "max": 127
+  },
+  "invert": false,
+  "enabled": true
+ },
+ {
+  "id": "mapuzu-5588",
+  "paramId": "cell5_cmi_p3",
+  "source": "nrpn",
+  "channel": 0,
+  "number": 5588,
+  "mode": "absolute",
+  "range": {
+   "min": 0,
+   "max": 127
+  },
+  "invert": false,
+  "enabled": true
+ },
+ {
+  "id": "mapuzu-6144",
+  "paramId": "cell6_synth_p1",
+  "source": "nrpn",
+  "channel": 0,
+  "number": 6144,
+  "mode": "absolute",
+  "range": {
+   "min": 0,
+   "max": 127
+  },
+  "invert": false,
+  "enabled": true
+ },
+ {
+  "id": "mapuzu-8659",
+  "paramId": "cell8_cmi_p2",
+  "source": "nrpn",
+  "channel": 0,
+  "number": 8659,
+  "mode": "absolute",
+  "range": {
+   "min": 0,
+   "max": 127
+  },
+  "invert": false,
+  "enabled": true
+ }
+]
