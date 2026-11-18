@@ -16,11 +16,13 @@ const NEEDED = ['Pattern', 'registerControl', 'reify', 'isPattern', 'logger', 'm
 
 /**
  * @param {object} core `@strudel/core`'s exports, from wherever this page keeps them
+ * @param {{ home?: string }} [where] `home` is the address the page module was imported from: the
+ *   site whose PAM `pamsetup({ web: true })` plays
  * @returns the controls (`cell`, `variation`, `vari`, `press`, `knob`), the output (`pam`,
  *   `pamsetup`, `pamstatus`, `pamhush`, `pamclock`, `pamTrigger`, `pamDefaults`), `pamtheme` and `reset` for tests
  */
-export function createBinding(core) {
+export function createBinding(core, { home } = {}) {
   const missing = NEEDED.filter((name) => typeof core?.[name] !== 'function');
   if (missing.length) throw new Error(`[pam] no Strudel here to bind to: ${missing.join(', ')} ${missing.length > 1 ? 'are' : 'is'} missing`);
-  return { ...createControls(core), ...createOutput(core), ...createTheme(core) };
+  return { ...createControls(core), ...createOutput(core, globalThis, home), ...createTheme(core) };
 }

@@ -42,3 +42,5 @@ export {
 export { compileValue, resolveNote, noteNumber } from './events.mjs';
 export { createMidiEncoder, nrpnBytes } from './midi.mjs';
 export { createFollower, readSnapshot, CLOCK_FEED_URL, CLOCK_VERSION } from './follow.mjs';
+export { PLAY_CHANNEL, PLAY_PROTOCOL, PLAY_PAGE, playTarget, toPlayEvents, checkSetup, createPlayClient } from './play.mjs';
+export { createSignalling, makeRoom, pair, PairError } from './play-rtc.mjs';

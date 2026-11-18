@@ -97,6 +97,8 @@ test('the browser bundle is one file with no Strudel in it, and it exports what 
   assert.ok(inputs.includes('mapuzu.mjs') && inputs.length >= 8, 'the entry and what it reaches');
   for (const input of inputs) assert.match(input, /^(mapuzu\.mjs|src\/(strudel|pam)\/[\w.-]+\.mjs)$/, `${input} is in the bundle`);
   assert.ok(!inputs.includes('src/strudel/npm.mjs'), 'the module that imports @strudel/core stays out');
+  assert.ok(inputs.includes('src/pam/play.mjs'), 'the web output is in it: strudel.cc imports this one file');
+  assert.match(text, /createBinding\(globalThis, \{ home: import\.meta\.url \}\)/, 'the bundle knows where it was imported from, which is the site whose PAM web: true plays');
   assert.doesNotMatch(text, /@strudel\/|@kabelsalat\/|node_modules/);
   assert.match(text, /^\/\*\nmapuzu\.mjs - part of @mapaudio\/mapuzu \d+\.\d+\.\d+[^\n]*\n[^\n]*Source: https:\/\/[^\n]+\nThis program is free software/, 'it opens with its name, its source and the licence notice');
 

@@ -1,6 +1,6 @@
 {
   "name": "@mapaudio/mapuzu",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "MAP Audio's instruments for uzulang live coding. PAM as a Strudel output and a TidalCycles OSC target: notes into cells, every MIDI-mappable parameter, variations, mutes and transport, plus offline rendering through mapcli.",
   "main": "index.mjs",
   "type": "module",

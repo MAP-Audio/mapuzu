@@ -12,10 +12,13 @@ This program is free software: you can redistribute it and/or modify it under th
 // It imports nothing by package name, so it loads from any URL as it is, and it binds to the
 // Strudel that the REPL has put in global scope. The quotes are single because the REPL reads a
 // double-quoted string as mini-notation.
+//
+// The site it is imported from is also the site whose PAM `pamsetup({ web: true })` plays, in a
+// browser tab and with no MIDI.
 
 import { createBinding } from './src/strudel/binding.mjs';
 
-const { reset: _reset, ...vocabulary } = createBinding(globalThis);
+const { reset: _reset, ...vocabulary } = createBinding(globalThis, { home: import.meta.url });
 Object.assign(globalThis, vocabulary);
 
 export const { cell, variation, vari, press, knob, pam, pamsetup, pamstatus, pamhush, pamclock, pamtheme, pamTrigger, pamDefaults } = vocabulary;

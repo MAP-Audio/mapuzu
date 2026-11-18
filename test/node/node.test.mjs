@@ -14,7 +14,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { deflateSync } from 'node:zlib';
-import { collect, evaluateStrudel } from '../../src/node/strudel.mjs';
+import { collect, evaluateStrudel, loadStrudel } from '../../src/node/strudel.mjs';
 import { currentSlot, decodeVariation, laneTargets, readPreset, variationStates } from '../../src/node/preset.mjs';
 import { mapcli, MapcliError } from '../../src/node/mapcli.mjs';
 import { freezeSong, renderSong, songTags } from '../../src/node/render.mjs';
@@ -61,6 +61,19 @@ test('collect takes names from the setup and starts counting at `begin`', async 
   const { pattern } = await evaluateStrudel('$: s("<bd sd>").pam()');
   const setup = createSetup({ names: { bd: 1, sd: 2 } });
   assert.deepEqual(collect(pattern, { cycles: 2, begin: 1, setup }).timeline.map((e) => [e.beat, e.events[0].cell]), [[0, 2], [4, 1]]);
+});
+
+test('a song that asks for the web output still evaluates here, where there is no browser: its setup stands and nothing waits', async () => {
+  for (const web of ['true', "'https://map.audio'"]) {
+    const { pattern } = await evaluateStrudel(`
+      await pamsetup({ web: ${web}, preset: 'night-shift', names: { bd: 1, sd: 2 } })
+      $: s("bd sd").pam()
+    `);
+    const { output } = await loadStrudel();
+    const { setup, web: connection } = output.pamstatus();
+    assert.equal(connection.state, 'unavailable');
+    assert.deepEqual(collect(pattern, { cycles: 1, setup }).timeline.map((e) => e.events[0].cell), [1, 2]);
+  }
 });
 
 test('a preset reads as metadata and state, and its variations decode from PAMZ1', () => {
